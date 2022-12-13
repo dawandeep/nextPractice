@@ -1,9 +1,11 @@
 import Head from "next/head";
-import React from 'react'
+import { useRouter } from "next/router";
 import styles from '../styles/Layout.module.css'
 import {Footer} from "./Footer";
+import Showcase from "./Showcase";
 import Header from "./Header"
 export const Layout = ({title,keywords,description,children}) => {
+  const router = useRouter();
   return (
     <div>
         <Head>
@@ -12,6 +14,7 @@ export const Layout = ({title,keywords,description,children}) => {
             <meta name='keywords' content={keywords}/>
         </Head>
         <Header/>
+        {router.pathname==="/" && <Showcase/> }   
         <div className={styles.container}>
           {children}
         </div>
@@ -24,3 +27,5 @@ Layout.defaultProps={
     description:"Find the latest Dj and other musical events",
     keywords:"music,edm,songs"
 }
+
+// means agar path yeh hai to yehi chale nhi to yeh show case show na ho..
